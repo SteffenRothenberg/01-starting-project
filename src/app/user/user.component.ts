@@ -16,4 +16,10 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 export class UserComponent {
   selectedUser = DUMMY_USERS[randomIndex]; 
   // die oben geschriebene Konstante wird hier nun anstelle einer statischen Zahl verwendet und macht die auswahl> dynamisch/zufällig
+  get imagePath(){ 
+    return 'assets/users/' + this.selectedUser.avatar
+  }
+  onSelectUser(){
+    console.log('Clicked!');
+  }
 }
