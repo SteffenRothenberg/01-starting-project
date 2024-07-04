@@ -1,28 +1,22 @@
-import { Component, computed, signal} from '@angular/core';
-
-import { DUMMY_USERS } from '../dummy-users'; 
-// der doppelte Punkt beim aufrufen des dummy user arrays sorgt dafür das wir in der projektstruktur eine eben höher danach suchen
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);  
-// die .floor Funktion gibt einen Integer gleich groß oder kleiner als die Anzahl an Usern in unserem Array wieder
-// die .random Funktion ruft nun eine zufällige Position in unseren Array auf
+import { Component, Input, input} from '@angular/core';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex]); 
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  // @Input({required: true}) avatar!: string;
+  // @Input({required: true}) name!: string;
+  avatar = input.required<string>();
+  name = input.required<string>();
+
   
-  // get imagePath(){ //usage nicht bei Singals
-  //   return 'assets/users/' + this.selectedUser.avatar
-  // }
-  
-  onSelectUser(){
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.selectedUser.set(DUMMY_USERS[randomIndex])
+
+  get imagePath(){
+    return 'assets/users/' + this.avatar;
   }
+  
+  onSelectUser() {}
 }
