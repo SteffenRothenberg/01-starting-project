@@ -1,4 +1,5 @@
-import { Component, Input, input} from '@angular/core';
+import { Component, Input, computed, input} from '@angular/core';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -12,11 +13,13 @@ export class UserComponent {
   avatar = input.required<string>();
   name = input.required<string>();
 
-  
+  imagePath = computed(() => {
+    return'assets/userss/' + this.avatar();
+  });
 
-  get imagePath(){
-    return 'assets/users/' + this.avatar;
-  }
+  // get imagePath(){
+  //   return 'assets/users/' + this.avatar;
+  // }
   
   onSelectUser() {}
 }
