@@ -15,6 +15,6 @@ export class AppComponent {
     users = DUMMY_USERS;
 
     onSelectUser(id: string) {
-        console.log('Selected user with id' + id);
+        console.log('Selected user with id' +  id);
     }
 }
